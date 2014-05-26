@@ -1,1 +1,3 @@
 *.swp
+nbproject/private/
+.DS_Store
