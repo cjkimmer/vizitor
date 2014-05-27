@@ -5,7 +5,6 @@ RNA visualization
 
 **To setup in NetBeans:**
 
-1. Create a new, empty HTML5 project.
 2. Go to team menu and select Git -> Clone
 3. Enter the URL from the browser above
 4. Enter your git userid and pasword and click Next>
