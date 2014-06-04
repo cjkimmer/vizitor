@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <script type="text/javascript">
+function drawShape(){
+
+  var canvas = document.getElementById('mycanvas');
+
+  if (canvas.getContext){
+
+    // use getContext to use the canvas for drawing
+    var ctx = canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(75,75,50,0,Math.PI*2,true);  // Outer circle
+    ctx.moveTo(110,75);
+    ctx.arc(75,75,35,0,Math.PI,false);   // Mouth
+    ctx.moveTo(65,65);
+    ctx.arc(60,65,5,0,Math.PI*2,true);  // Left eye
+    ctx.moveTo(95,65);
+    ctx.arc(90,65,5,0,Math.PI*2,true);  // Right eye
+    ctx.fillStyle="#FF0000";
+    //ctx.fillCircle(75,75,50,0);
+    ctx.stroke();
+  } else {
+    alert('You need Safari or Firefox 1.5+ to see this demo.');
+  }
+}
+</script>
+</head>
+<body onload="drawShape();">
+   <canvas id="mycanvas"></canvas>
+</body>
+</html>
