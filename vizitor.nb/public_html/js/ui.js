@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-var canvas;
-var ctx;
+var canvas; // holds the canvas element
+var ctx; // holds the context
+var vizFunc; // holds the current function to use to draw on the canvas
 
 function initCanvas() {
     canvas = document.getElementById('theCanvas');
@@ -15,7 +16,87 @@ function initCanvas() {
         document.writeln("<p>ho</p>");
 }
 
-function drawLinearDiagram(scaleFactor) {
+var drawDotPlot = function(scaleFactor) {
+   // how many pixels between each base in RNA chain. I made this number up!
+    var xcale;
+    var yscale;
+    var dx = 15; // how many pixels between each base in RNA chain. I made this number up!
+    // how many pixels between each base in RNA chain. I made this number up!
+    if (scaleFactor === "auto")
+        xscale = 1080/(rnaStruct.length+3)/dx;
+    else 
+        xscale = scaleFactor;
+    yscale = 640/1080*xscale;
+    ctx.scale(xscale,yscale);
+    ctx.fillStyle = "rgb(200,0,0)";
+    ctx.font = "bold 12px Arial";
+    ctx.strokeStyle = "rgb(200,0,0)";
+    ctx.lineWidth = 1;
+    
+    var xpos = dx; // move along the horizontal axis starting 15 pixels from the left edge
+    var yval = 680/yscale; // This is the vertical position we're moving along. Close to the
+        // bottom of the canvas element. Smaller yval closer to zero would be moving along
+        // a horizontal line closer to the top of the canvas
+        
+    // rnaStruct holds the RNA chain for now. It's basically an array where each entry
+    //    is 3 items: 
+    //      0) an index which starts counting from 1
+    //      1) the letter for the RNA base at this position 
+    //      2) the index of the other RNA base it's paired with, or 0 if it's not paired
+    for (var i = 0; i < rnaStruct.length - 1; i++) { // kimmer, fix the -1 !!
+        xpos = xpos + dx; 
+        ctx.fillText(rnaStruct[i][1], xpos, yval); // draw the base
+        if ((i+1) % 5 === 0) {
+            ctx.font = "bold 10px Arial";
+            ctx.fillText(i+1,xpos,yval + 15); // this is like tick marks , so draw a number every 
+                // 5th one (the i % 5)
+            ctx.font = "bold 12px Arial";
+            
+                
+            //ctx.beginPath();
+            ctx.fillRect(10,10,100,150);
+            ctx.fillStyle="rgb(200,0,0)";
+           // ctx.closePath();
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+        //function Draw circle(xpos, ypos, r,c ){
+        var b1 = parseInt(rnaStruct[i][0]) - 1; 
+        //For(var i = 0; i < rnaStruct.length -1; i++){
+          //  ctx.beginPath();
+            //ctx.arc(xpos,ypos, r, 0,MATH.PI
+        
+       
+        // b1 should always be equal to i, because it was
+            // an index starting at 1, and we've subtracted off that 1
+        var b2 = parseInt(rnaStruct[i][2]) - 1; // we've subtracted off a 1, so b2 is -1 if this
+            // base is not paired with anything, and otherwise rnaStruct[b2] is the base we're
+            // paired with
+        if (b1 < b2) { // the b1 < b2 just checks that we're only looking ahead in the chain
+                // if b2 != -1 but b2 < b1, then we've already looped over base b1 and don't need
+                // to draw the same circle twice
+            var cirRad = (b2 - b1)*dx/2;
+            // here I calculate the radius of a circle where every
+            //ctx.arc(x,y,r,c,rnaStruct);
+    // tick is dx pixels wide
+            ctx.beginPath();
+            ctx.arc(xpos + dx/3 + cirRad,yval-15,cirRad,0.,Math.PI,true);
+            ctx.stroke();
+            ctx.closePath(); // duh, lift the pen!
+        }
+    }
+    
+    ctx.closePath();
+};
+
+var drawLinearDiagram = function(scaleFactor) {
     var xcale;
     var yscale;
     var dx = 15; // how many pixels between each base in RNA chain. I made this number up!
@@ -68,7 +149,7 @@ function drawLinearDiagram(scaleFactor) {
     ctx.closePath();
 }
 
-function drawCircularDiagram(scaleFactor) {
+var drawCircularDiagram = function(scaleFactor) {
     //var span = document.createElement('span');
     //span.innerHTML = '<p>';
     var xcale;
@@ -194,9 +275,13 @@ function drawCircularDiagram(scaleFactor) {
     //span.innerHTML = span.innerHTML + '</p>';
     
     //document.getElementById('list').insertBefore(span, null);
-}
+};
 
 function initThings() {
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
     initCanvas();
+    $(function() {
+        $( "#vizMethod" ).buttonset();
+    });
+    vizFunc = drawDotPlot;
 }
