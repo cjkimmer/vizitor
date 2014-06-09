@@ -53,7 +53,14 @@ and open the template in the editor.
                 // 5th one (the i % 5)
             ctx.font = "bold 12px Arial";
         }
-        var b1 = parseInt(rnaStruct[i][0]) - 1; // b1 should always be equal to i, because it was
+        //function Draw circle(xpos, ypos, r,c ){
+        var b1 = parseInt(rnaStruct[i][0]) - 1; 
+        //For(var i = 0; i < rnaStruct.length -1; i++){
+          //  ctx.beginPath();
+            //ctx.arc(xpos,ypos, r, 0,MATH.PI
+        
+       
+        // b1 should always be equal to i, because it was
             // an index starting at 1, and we've subtracted off that 1
         var b2 = parseInt(rnaStruct[i][2]) - 1; // we've subtracted off a 1, so b2 is -1 if this
             // base is not paired with anything, and otherwise rnaStruct[b2] is the base we're
@@ -61,13 +68,17 @@ and open the template in the editor.
         if (b1 < b2) { // the b1 < b2 just checks that we're only looking ahead in the chain
                 // if b2 != -1 but b2 < b1, then we've already looped over base b1 and don't need
                 // to draw the same circle twice
-            var cirRad = (b2 - b1)*dx/2; // here I calculate the radius of a circle where every
-                // tick is dx pixels wide
+            var cirRad = (b2 - b1)*dx/2;
+            // here I calculate the radius of a circle where every
+            //ctx.arc(x,y,r,c,rnaStruct);
+    // tick is dx pixels wide
             ctx.beginPath();
             ctx.arc(xpos + dx/3 + cirRad,yval-15,cirRad,0.,Math.PI,true);
             ctx.stroke();
             ctx.closePath(); // duh, lift the pen!
-        } 
+        }
+    }
+    
     }
     ctx.closePath();
 }
