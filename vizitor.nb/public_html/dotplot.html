@@ -21,7 +21,7 @@ and open the template in the editor.
         var yscale;
         var dx = 15;
     
-      function drawLinearDiagram(scaleFactor) {
+      function drawdotplot (scaleFactor) {
  // how many pixels between each base in RNA chain. I made this number up!
     if (scaleFactor === "auto")
         xscale = 1080/(rnaStruct.length+3)/dx;
@@ -54,10 +54,10 @@ and open the template in the editor.
             ctx.font = "bold 12px Arial";
             
                 
-            //ctx.beginPath();
+            ctx.beginPath();
             ctx.fillRect(10,10,100,150);
             ctx.fillStyle="rgb(200,0,0)";
-           // ctx.closePath();
+            ctx.closePath();
             
             
             
@@ -72,7 +72,7 @@ and open the template in the editor.
         var b1 = parseInt(rnaStruct[i][0]) - 1; 
         //For(var i = 0; i < rnaStruct.length -1; i++){
           //  ctx.beginPath();
-            //ctx.arc(xpos,ypos, r, 0,MATH.PI
+            //ctx.arc(xpos,ypos, r, 0,MATH.PI);
         
        
         // b1 should always be equal to i, because it was
