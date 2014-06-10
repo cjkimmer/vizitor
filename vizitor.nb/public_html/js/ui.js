@@ -18,8 +18,8 @@ function initCanvas() {
 
 var drawDotPlot = function(scaleFactor) {
    // how many pixels between each base in RNA chain. I made this number up!
-    var xcale;
-    var yscale;
+    var xcale = 2000;
+    var yscale= 2000;
     var dx = 15; // how many pixels between each base in RNA chain. I made this number up!
     // how many pixels between each base in RNA chain. I made this number up!
     if (scaleFactor === "auto")
@@ -51,9 +51,9 @@ var drawDotPlot = function(scaleFactor) {
             ctx.fillText(i+1,xpos,yval + 15); // this is like tick marks , so draw a number every 
                 // 5th one (the i % 5)
             ctx.font = "bold 12px Arial";
-            ctx.fillRect(10,10,75,200);
-            ctx.fillStyle="rgb(0,0,200)";
-            ctx.stroke();
+            ctx.fillRect(15,15,75,200);
+            //ctx.fillStyle="rgb(0,0,200)";
+            //ctx.stroke();
             
            
         }
