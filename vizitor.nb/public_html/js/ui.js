@@ -19,9 +19,9 @@ function initCanvas() {
 
 var drawDotPlot = function(scaleFactor) {
    // how many pixels between each base in RNA chain. I made this number up!
-    var xcale;
+    var xscale;
     var yscale;
-    var dx = 15; // how many pixels between each base in RNA chain. I made this number up!
+    var dx = 10; // how many pixels between each base in RNA chain. I made this number up!
     // how many pixels between each base in RNA chain. I made this number up!
     if (scaleFactor === "auto")
         xscale = 1080/(rnaStruct.length+3)/dx;
@@ -29,6 +29,7 @@ var drawDotPlot = function(scaleFactor) {
         xscale = scaleFactor;
     yscale = 640/1080*xscale;
     ctx.scale(xscale,yscale);
+    ctx.fillRect(10,10,100,75);
     ctx.fillStyle = "rgb(200,0,0)";
     ctx.font = "bold 12px Arial";
     ctx.strokeStyle = "rgb(200,0,0)";
@@ -49,12 +50,12 @@ var drawDotPlot = function(scaleFactor) {
         ctx.fillText(rnaStruct[i][1], xpos, yval); // draw the base
         if ((i+1) % 5 === 0) {
             ctx.font = "bold 10px Arial";
-            ctx.fillText(i+1,xpos,yval + 15); // this is like tick marks , so draw a number every 
+            ctx.fillText(i+1,xpos,yval + 10); // this is like tick marks , so draw a number every 
                 // 5th one (the i % 5)
             ctx.font = "bold 12px Arial";
-            ctx.fillRect(10,10,75,200);
-            ctx.fillStyle="rgb(0,0,200)";
-            ctx.stroke();
+            // ctx.fillRect(10,10,75,200);
+            //ctx.fillStyle="rgb(0,0,200)";
+            //ctx.stroke();
             
            
         }
@@ -62,7 +63,7 @@ var drawDotPlot = function(scaleFactor) {
         var b1 = parseInt(rnaStruct[i][0]) - 1; 
         for(var i = 0; i < rnaStruct.length -1; i++){
             ctx.beginPath();
-            ctx.arc(b1,0,r,c,rnaStruct);
+            ctx.arcTo(b1,0,r,c,rnaStruct);
             //ctx.moveTo();
             //ctx.arc();
             ctx.closePath();
@@ -72,7 +73,7 @@ var drawDotPlot = function(scaleFactor) {
             // an index starting at 1, and we've subtracted off that 1
         var b2 = parseInt(rnaStruct[i][2]) - 1;
         ctx.beginPath();
-        ctx.arc(0,b2,r,c,rnaStruct);
+        ctx.arcTo(0,b2,r,c,rnaStruct);
         ctx.closePath();
         
 // we've subtracted off a 1, so b2 is -1 if this
