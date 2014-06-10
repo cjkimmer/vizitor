@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-var rnaStruct = []; // This is the array
+var rnaStruct = []; // This is the array that holds [index,base,pairedWith] information for chain
 
 /**
  * 
@@ -32,8 +32,9 @@ function handleFileSelect(evt) {
                 console.log(rnaStruct);
                 //span.innerHTML = span.innerHTML + '</p>';
                 //document.getElementById('list').insertBefore(span, null);
-                //drawLinearDiagram("auto");
-                drawCircularDiagram("auto");
+                rnaLoaded = true;
+                $( "#vizMethod" ).show();
+                vizFunc("auto"); // this calls whichever function vizFunc is equal to
             };
         })(f);
         

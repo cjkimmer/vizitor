@@ -7,6 +7,7 @@
 var canvas; // holds the canvas element
 var ctx; // holds the context
 var vizFunc; // holds the current function to use to draw on the canvas
+var rnaLoaded = false; // boolean, true if a structure has been loaded
 
 function initCanvas() {
     canvas = document.getElementById('theCanvas');
@@ -147,7 +148,7 @@ var drawLinearDiagram = function(scaleFactor) {
         } 
     }
     ctx.closePath();
-}
+};
 
 var drawCircularDiagram = function(scaleFactor) {
     //var span = document.createElement('span');
@@ -278,10 +279,27 @@ var drawCircularDiagram = function(scaleFactor) {
 };
 
 function initThings() {
+    rnaLoaded = false;
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
     initCanvas();
     $(function() {
         $( "#vizMethod" ).buttonset();
     });
     vizFunc = drawDotPlot;
+    $( "#vizMethod" ).hide();
+    $( " #circle, #line, #dotplot" ).change(
+        function () {
+            if ($("#circle").attr("checked")) {
+                vizFunc = drawCircularDiagram;
+            }
+            if ($("#line").attr("checked")) {
+                vizFunc = drawLinearDiagram;
+            }
+            if ($("#dotplot").attr("checked")) {
+                vizFunc = drawDotPlot;
+            }
+            if (rnaLoaded) // if an RNA structure is loaded, re-draw the canvas
+                vizFunc("auto");
+        }
+    );
 }

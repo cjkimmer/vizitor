@@ -1,25 +1,40 @@
 <!DOCTYPE html>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>jsRNA</title>
+<script type="text/JavaScript" src="js/libs/jquery/jquery.js"></script>
+<script type="text/JavaScript" src="js/libs/jqueryui/jquery-ui.js"></script>
 <script type="text/JavaScript" src="js/rna.js"></script>
 <script type="text/JavaScript" src="js/ui.js"></script>
+<link rel="stylesheet" href="js/libs/jqueryui/css/flick/jquery-ui-1.10.4.custom.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body onload="initThings();">
-	<form>
-		<input type="file" id="files" name="files[]" multiple />
-		<output id="list"></output>
-	</form>
-	<div>
-		<br>
-		<canvas width="1080" height="720" id="theCanvas" style="border-style:solid;
-border-color:#ff0000;"> </canvas>
-	</div>
-    <a href="smile.html">Smile</a>
+    <div id="theTop">
+        <form>
+            <input type="file" id="files" name="files[]" multiple />
+            <output id="list"></output>
+        </form>
+        <form>
+            <div id="vizMethod">
+                <input type="radio" id="circle" name="vizMethod"><label for="circle">Circular</label>
+                <input type="radio" id="line" name="vizMethod"><label for="line">Linear</label>
+                <input type="radio" id="dotplot" name="vizMethod" checked="checked"><label for="dotplot">Dot Plot</label>
+            </div>
+        </form>
+    </div>
+    <div id="theMiddle">
+	<br>
+        <div id="theSidebar">
+            
+        </div>
+	<canvas width="900" height="600" id="theCanvas"> 
+        </canvas>
+    </div>
+    <br/>
+    <div id="theBottom">
+        <a href="smile.html">Smile</a>
+    </div>
 </body>
 </html>
