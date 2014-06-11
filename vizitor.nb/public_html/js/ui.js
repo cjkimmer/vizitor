@@ -29,7 +29,6 @@ var drawDotPlot = function(scaleFactor) {
         xscale = scaleFactor;
     yscale = 640/1080*xscale;
     ctx.scale(xscale,yscale);
-    ctx.fillRect(10,10,100,75);
     ctx.fillStyle = "rgb(200,0,0)";
     ctx.font = "bold 12px Arial";
     ctx.strokeStyle = "rgb(200,0,0)";
@@ -37,8 +36,7 @@ var drawDotPlot = function(scaleFactor) {
     
     var xpos = dx; // move along the horizontal axis starting 15 pixels from the left edge
     var yval = 680/yscale; // This is the vertical position we're moving along. Close to the
-        // bottom of the canvas element. Smaller yval closer to zero would be moving along
-        // a horizontal line closer to the top of the canvas
+     
         
     // rnaStruct holds the RNA chain for now. It's basically an array where each entry
     //    is 3 items: 
@@ -49,32 +47,31 @@ var drawDotPlot = function(scaleFactor) {
         xpos = xpos + dx; 
         ctx.fillText(rnaStruct[i][1], xpos, yval); // draw the base
         if ((i+1) % 5 === 0) {
+
             ctx.font = "bold 10px Arial";
             ctx.fillText(i+1,xpos,yval + 10); // this is like tick marks , so draw a number every 
                 // 5th one (the i % 5)
             ctx.font = "bold 12px Arial";
-            // ctx.fillRect(10,10,75,200);
-            //ctx.fillStyle="rgb(0,0,200)";
-            //ctx.stroke();
-            
-           
         }
-        //function Draw circle(xpos, ypos, r,c ){
-        var b1 = parseInt(rnaStruct[i][0]) - 1; 
-        for(var i = 0; i < rnaStruct.length -1; i++){
-            ctx.beginPath();
-            ctx.arcTo(b1,0,r,c,rnaStruct);
-            //ctx.moveTo();
-            //ctx.arc();
-            ctx.closePath();
-        
-        }
-        // b1 should always be equal to i, because it was
-            // an index starting at 1, and we've subtracted off that 1
-        var b2 = parseInt(rnaStruct[i][2]) - 1;
+        var b1 = parseInt(rnaStruct[i][0]) - 1;
         ctx.beginPath();
-        ctx.arcTo(0,b2,r,c,rnaStruct);
-        ctx.closePath();
+ctx.lineTo(10,40);
+ctx.lineTo(680,40);
+ctx.fillStyle = "black";
+ctx.font = "bold 20px Arial";
+ctx.fillText("rnaStruct", 14, 39);
+//put text on line has to be 1 about the line start. 
+// 	context.fillText(text,x,y,maxWidth);
+ctx.stroke();
+ctx.closePath();
+     // draw vertical line
+ctx.beginPath();
+ctx.lineTo(680,40);
+ctx.lineTo(680,960);
+ctx.stroke();
+ctx.closePath();
+        var b2 = parseInt(rnaStruct[i][2]) - 1;
+        
         
 // we've subtracted off a 1, so b2 is -1 if this
             // base is not paired with anything, and otherwise rnaStruct[b2] is the base we're
@@ -84,12 +81,12 @@ var drawDotPlot = function(scaleFactor) {
                 // to draw the same circle twice
             var cirRad = (b2 - b1)*dx/2;
             // here I calculate the radius of a circle where every
-            ctx.arc(x,y,r,c,rnaStruct);
+           // ctx.arc(x,y,r,c,rnaStruct);
     // tick is dx pixels wide
-            ctx.beginPath();
-            ctx.arc(xpos + dx/3 + cirRad,yval-15,cirRad,0.,Math.PI,true);
-            ctx.stroke();
-            ctx.closePath(); // duh, lift the pen!
+           // ctx.beginPath();
+           // ctx.arc(xpos + dx/3 + cirRad,yval-15,cirRad,0.,Math.PI,true);
+           // ctx.stroke();
+            //ctx.closePath(); // duh, lift the pen!
         }
     }
     
