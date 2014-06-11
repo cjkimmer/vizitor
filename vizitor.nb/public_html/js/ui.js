@@ -23,20 +23,42 @@ var drawDotPlot = function(scaleFactor) {
     var yscale;
     var dx = 10; // how many pixels between each base in RNA chain. I made this number up!
     // how many pixels between each base in RNA chain. I made this number up!
-    if (scaleFactor === "auto")
-        xscale = 1080/(rnaStruct.length+3)/dx;
+    /* if (scaleFactor === "auto") // Kimmer commented out this block since we're not using scale
+        xscale = 900/(rnaStruct.length+3)/dx;
     else 
         xscale = scaleFactor;
-    yscale = 640/1080*xscale;
-    ctx.scale(xscale,yscale);
+    yscale = 600/900*xscale; */
+    xscale = 1; // note that some of the variables in the rest of this function still refer
+        // to xscale or yscale, so set it equal to one to be safe
+    yscale = 1;
+    //ctx.scale(xscale,yscale); // Kimmer will comment this out since we're not using it
     ctx.fillStyle = "rgb(200,0,0)";
     ctx.font = "bold 12px Arial";
     ctx.strokeStyle = "rgb(200,0,0)";
     ctx.lineWidth = 1;
     
+    // Karen, draw the line only once, so before the for loop
+    ctx.beginPath();
+ctx.lineTo(10,40);
+ctx.lineTo(680,40);
+ctx.fillStyle = "black";
+ctx.font = "bold 20px Arial";
+ctx.fillText("rnaStruct", 14, 39);
+//put text on line has to be 1 about the line start. 
+// 	context.fillText(text,x,y,maxWidth);
+ctx.stroke();
+ctx.closePath();
+     // draw vertical line
+ctx.beginPath();
+ctx.lineTo(680,40);
+ctx.lineTo(680,960);
+ctx.stroke();
+ctx.closePath();
+    
     var xpos = dx; // move along the horizontal axis starting 15 pixels from the left edge
     var yval = 680/yscale; // This is the vertical position we're moving along. Close to the
-     
+    // Karen, look at yval, it's going to be equal to 680 but our canvas is only 600 pixels
+    // tall. Anything drawn below at y coord of yval will not show up!
         
     // rnaStruct holds the RNA chain for now. It's basically an array where each entry
     //    is 3 items: 
@@ -54,22 +76,6 @@ var drawDotPlot = function(scaleFactor) {
             ctx.font = "bold 12px Arial";
         }
         var b1 = parseInt(rnaStruct[i][0]) - 1;
-        ctx.beginPath();
-ctx.lineTo(10,40);
-ctx.lineTo(680,40);
-ctx.fillStyle = "black";
-ctx.font = "bold 20px Arial";
-ctx.fillText("rnaStruct", 14, 39);
-//put text on line has to be 1 about the line start. 
-// 	context.fillText(text,x,y,maxWidth);
-ctx.stroke();
-ctx.closePath();
-     // draw vertical line
-ctx.beginPath();
-ctx.lineTo(680,40);
-ctx.lineTo(680,960);
-ctx.stroke();
-ctx.closePath();
         var b2 = parseInt(rnaStruct[i][2]) - 1;
         
         
@@ -79,7 +85,8 @@ ctx.closePath();
         if (b1 < b2) { // the b1 < b2 just checks that we're only looking ahead in the chain
                 // if b2 != -1 but b2 < b1, then we've already looped over base b1 and don't need
                 // to draw the same circle twice
-            var cirRad = (b2 - b1)*dx/2;
+            var cirRad = (b2 - b1)*dx/2; // Karen, this is for the big arc in the
+            //  the linear visualization. You need a smaller circle radius
             // here I calculate the radius of a circle where every
            // ctx.arc(x,y,r,c,rnaStruct);
     // tick is dx pixels wide
