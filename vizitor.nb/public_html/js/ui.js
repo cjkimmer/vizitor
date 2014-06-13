@@ -77,8 +77,6 @@ ctx.closePath();
         }
         var b1 = parseInt(rnaStruct[i][0]) - 1;
         var b2 = parseInt(rnaStruct[i][2]) - 1;
-        
-        
 // we've subtracted off a 1, so b2 is -1 if this
             // base is not paired with anything, and otherwise rnaStruct[b2] is the base we're
             // paired with
