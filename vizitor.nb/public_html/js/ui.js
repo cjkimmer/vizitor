@@ -87,7 +87,7 @@ ctx.closePath();
             // paired with
         if (b1 < b2) { 
             ctx.beginPath();
-            ctx.centerAt(dx + b2* dx/2, dy + i* dx + dx/2);
+            ctx.centerAt(dx + b2* dx/2, (dy + i)* dx + dx/2);
             ctx.stroke();
             ctx.closePath();
 // the b1 < b2 just checks that we're only looking ahead in the chain
