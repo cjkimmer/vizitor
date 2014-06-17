@@ -77,16 +77,26 @@ ctx.closePath();
         }
         var b1 = parseInt(rnaStruct[i][0]) - 1;
         var b2 = parseInt(rnaStruct[i][2]) - 1;
+        ctx.beginPath();
+        ctx.centerAt(dx +(i + 1)+ dx/2,dy + (i +  1)+ dx/2);
+        ctx.stroke();
+        ctx.closePath();
+      
 // we've subtracted off a 1, so b2 is -1 if this
             // base is not paired with anything, and otherwise rnaStruct[b2] is the base we're
             // paired with
-        if (b1 < b2) { // the b1 < b2 just checks that we're only looking ahead in the chain
+        if (b1 < b2) { 
+            ctx.beginPath();
+            ctx.centerAt(dx + b2* dx/2, dy + i* dx + dx/2);
+            ctx.stroke();
+            ctx.closePath();
+// the b1 < b2 just checks that we're only looking ahead in the chain
                 // if b2 != -1 but b2 < b1, then we've already looped over base b1 and don't need
                 // to draw the same circle twice
             var cirRad = (b2 - b1)*dx/2; // Karen, this is for the big arc in the
             //  the linear visualization. You need a smaller circle radius
             // here I calculate the radius of a circle where every
-           // ctx.arc(x,y,r,c,rnaStruct);
+          //ctx.arc(x,y,r,c,rnaStruct);
     // tick is dx pixels wide
            // ctx.beginPath();
            // ctx.arc(xpos + dx/3 + cirRad,yval-15,cirRad,0.,Math.PI,true);
