@@ -21,6 +21,7 @@ var drawDotPlot = function(scaleFactor) {
    // how many pixels between each base in RNA chain. I made this number up!
     var xscale;
     var yscale;
+    var dy = 10;
     var dx = 10; // how many pixels between each base in RNA chain. I made this number up!
     // how many pixels between each base in RNA chain. I made this number up!
     /* if (scaleFactor === "auto") // Kimmer commented out this block since we're not using scale
@@ -78,7 +79,7 @@ ctx.closePath();
         var b1 = parseInt(rnaStruct[i][0]) - 1;
         var b2 = parseInt(rnaStruct[i][2]) - 1;
         ctx.beginPath();
-        ctx.centerAt(dx +(i + 1)+ dx/2,dy + (i +  1)+ dx/2);
+        ctx.arc(xpos + dx/3 + cirRad,yval-15,cirRad,0.,Math.PI,true); 
         ctx.stroke();
         ctx.closePath();
       
@@ -87,8 +88,8 @@ ctx.closePath();
             // paired with
         if (b1 < b2) { 
             ctx.beginPath();
-            ctx.centerAt(dx + b2* dx/2, (dy + i)* dx + dx/2);
-            ctx.stroke();
+           // ctx.arc(dx + b2* dx/2, (dy + i)* dx + dx/2);
+           // ctx.stroke();
             ctx.closePath();
 // the b1 < b2 just checks that we're only looking ahead in the chain
                 // if b2 != -1 but b2 < b1, then we've already looped over base b1 and don't need
