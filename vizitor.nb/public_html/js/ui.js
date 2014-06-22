@@ -88,7 +88,7 @@ ctx.closePath();
             // paired with
         if (b1 < b2) { 
             ctx.beginPath();
-          ctx.arc(dx * b2/2,yval-25,cirRad,0.,Math.PI,true);
+          ctx.arc(10+ b2 *dx + dx/2,yval,cirRad,0.,Math.PI,true);
             ctx.stroke();
             ctx.closePath();
 // the b1 < b2 just checks that we're only looking ahead in the chain
