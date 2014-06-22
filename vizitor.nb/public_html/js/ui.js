@@ -88,8 +88,8 @@ ctx.closePath();
             // paired with
         if (b1 < b2) { 
             ctx.beginPath();
-           // ctx.arc(dx + b2* dx/2, (dy + i)* dx + dx/2);
-           // ctx.stroke();
+          ctx.arc(dx * b2/2,yval-25,cirRad,0.,Math.PI,true);
+            ctx.stroke();
             ctx.closePath();
 // the b1 < b2 just checks that we're only looking ahead in the chain
                 // if b2 != -1 but b2 < b1, then we've already looped over base b1 and don't need
@@ -99,9 +99,9 @@ ctx.closePath();
             // here I calculate the radius of a circle where every
           //ctx.arc(x,y,r,c,rnaStruct);
     // tick is dx pixels wide
-           // ctx.beginPath();
-           // ctx.arc(xpos + dx/3 + cirRad,yval-15,cirRad,0.,Math.PI,true);
-           // ctx.stroke();
+            //ctx.beginPath();
+            //ctx.arc(xpos + dx/3 + cirRad,yval-15,cirRad,0.,Math.PI,true);
+          //ctx.stroke();
             //ctx.closePath(); // duh, lift the pen!
         }
     }
