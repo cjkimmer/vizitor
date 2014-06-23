@@ -57,7 +57,7 @@ ctx.stroke();
 ctx.closePath();
     
     var xpos = dx; // move along the horizontal axis starting 15 pixels from the left edge
-    var yval = 500/yscale; // This is the vertical position we're moving along. Close to the
+    var yval = 40/yscale; // This is the vertical position we're moving along. Close to the
     // Karen, look at yval, it's going to be equal to 680 but our canvas is only 600 pixels
     // tall. Anything drawn below at y coord of yval will not show up!
         
@@ -79,7 +79,7 @@ ctx.closePath();
         var b1 = parseInt(rnaStruct[i][0]) - 1;
         var b2 = parseInt(rnaStruct[i][2]) - 1;
         ctx.beginPath();
-        ctx.arc(xpos + dx/3 + cirRad,yval-15,cirRad,0.,Math.PI,true); 
+        //ctx.arc(xpos + dx/3 + cirRad,yval-15,cirRad,0.,Math.PI,true); 
         ctx.stroke();
         ctx.closePath();
       
@@ -88,7 +88,7 @@ ctx.closePath();
             // paired with
         if (b1 < b2) { 
             ctx.beginPath();
-          ctx.arc(dx* b2 +dx/2,yval,cirRad,0.,Math.PI,true);
+          //ctx.arc(dx* b2 +dx/2,yval,cirRad,0.,Math.PI,true);
             ctx.stroke();
             ctx.closePath();
 // the b1 < b2 just checks that we're only looking ahead in the chain
