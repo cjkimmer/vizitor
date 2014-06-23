@@ -24,15 +24,15 @@ var drawDotPlot = function(scaleFactor) {
     var dy = 10;
     var dx = 10; // how many pixels between each base in RNA chain. I made this number up!
     // how many pixels between each base in RNA chain. I made this number up!
-    /* if (scaleFactor === "auto") // Kimmer commented out this block since we're not using scale
+    if (scaleFactor === "auto") // Kimmer commented out this block since we're not using scale
         xscale = 900/(rnaStruct.length+3)/dx;
     else 
         xscale = scaleFactor;
-    yscale = 600/900*xscale; */
+    yscale = 600/900*xscale; 
     xscale = 1; // note that some of the variables in the rest of this function still refer
         // to xscale or yscale, so set it equal to one to be safe
     yscale = 1;
-    //ctx.scale(xscale,yscale); // Kimmer will comment this out since we're not using it
+    ctx.scale(xscale,yscale); // Kimmer will comment this out since we're not using it
     ctx.fillStyle = "rgb(200,0,0)";
     ctx.font = "bold 12px Arial";
     ctx.strokeStyle = "rgb(200,0,0)";
@@ -40,8 +40,11 @@ var drawDotPlot = function(scaleFactor) {
     
     // Karen, draw the line only once, so before the for loop
     ctx.beginPath();
-ctx.lineTo(10,40);
-ctx.lineTo(680,40);
+    
+ctx.lineTo(2*dx,40);
+ctx.lineTo((rnaStruct.length + 1)*dx,40);
+//ctx.lineTo(10,40);
+//ctx.lineTo(680,40);
 ctx.fillStyle = "black";
 ctx.font = "bold 20px Arial";
 //ctx.fillText("rnaStruct", 14, 39);
