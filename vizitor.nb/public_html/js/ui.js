@@ -54,6 +54,8 @@ ctx.stroke();
 ctx.closePath();
      // draw vertical line
 ctx.beginPath();
+//ctx.lineTo(2*dx,680);
+//ctx.lineTo((rnaStruct.length + 1)*dx,960);
 ctx.lineTo(680,40);
 ctx.lineTo(680,960);
 ctx.stroke();
