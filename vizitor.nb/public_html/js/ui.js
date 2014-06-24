@@ -29,9 +29,9 @@ var drawDotPlot = function(scaleFactor) {
     else 
         xscale = scaleFactor;
     yscale = 600/900*xscale; 
-    xscale = 1; // note that some of the variables in the rest of this function still refer
+   // xscale = 1; // note that some of the variables in the rest of this function still refer
         // to xscale or yscale, so set it equal to one to be safe
-    yscale = 1;
+    //yscale = 1;
     ctx.scale(xscale,yscale); // Kimmer will comment this out since we're not using it
     ctx.fillStyle = "rgb(200,0,0)";
     ctx.font = "bold 12px Arial";
